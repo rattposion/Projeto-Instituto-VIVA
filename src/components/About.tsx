@@ -12,7 +12,7 @@ const About = () => {
             Sobre o Instituto VIVA
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Fundado em 2009, o Instituto VIVA nasceu do sonho de criar um espaço onde pessoas com TEA 
+            O Instituto VIVA nasceu do sonho de criar um espaço onde pessoas com TEA 
             pudessem desenvolver todo seu potencial em um ambiente acolhedor e especializado.
           </p>
         </div>
