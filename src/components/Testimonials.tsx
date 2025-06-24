@@ -6,42 +6,42 @@ const Testimonials = () => {
   const testimonials = [
     {
       name: "Maria Silva",
-      role: "Mãe do João, 8 anos",
+      role: "Mãe do João",
       content: "O Instituto VIVA transformou a vida do meu filho e da nossa família. João chegou aqui sem falar uma palavra e hoje se comunica, brinca e está incluído na escola regular. A equipe é excepcional!",
       rating: 5,
       image: "https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&w=150"
     },
     {
       name: "Carlos Oliveira",
-      role: "Pai da Ana, 12 anos",
+      role: "Pai da Ana",
       content: "Há 5 anos procurávamos um lugar que realmente entendesse nossa filha. No VIVA encontramos profissionais qualificados e um ambiente acolhedor. Ana desenvolveu autonomia e autoestima.",
       rating: 5,
       image: "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=150"
     },
     {
       name: "Fernanda Costa",
-      role: "Mãe do Pedro, 15 anos",
+      role: "Mãe do Pedro",
       content: "O programa de preparação para vida adulta foi fundamental para Pedro. Hoje ele tem habilidades sociais, trabalha meio período e sonha com a faculdade. Gratidão eterna ao VIVA!",
       rating: 5,
       image: "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=150"
     },
     {
       name: "Roberto Santos",
-      role: "Pai do Lucas, 6 anos",
+      role: "Pai do Lucas",
       content: "Lucas era muito agitado e tinha dificuldades sensoriais. Com a terapia ocupacional e ABA, ele aprendeu a se regular e hoje participa de todas as atividades familiares com alegria.",
       rating: 5,
       image: "https://images.pexels.com/photos/1181562/pexels-photo-1181562.jpeg?auto=compress&cs=tinysrgb&w=150"
     },
     {
       name: "Juliana Ferreira",
-      role: "Mãe da Sofia, 10 anos",
+      role: "Mãe da Sofia",
       content: "A musicoterapia despertou talentos que nem sabíamos que Sofia tinha. Ela toca piano, canta e se expressa através da música. O VIVA vê potencial onde outros veem limitações.",
       rating: 5,
       image: "https://images.pexels.com/photos/1181677/pexels-photo-1181677.jpeg?auto=compress&cs=tinysrgb&w=150"
     },
     {
       name: "André Rodrigues",
-      role: "Pai do Gabriel, 14 anos",
+      role: "Pai do Gabriel",
       content: "O apoio às famílias foi essencial para nós. Aprendemos estratégias, conhecemos outras famílias e hoje somos uma rede de apoio. Gabriel floresceu neste ambiente de amor e compreensão.",
       rating: 5,
       image: "https://images.pexels.com/photos/1181519/pexels-photo-1181519.jpeg?auto=compress&cs=tinysrgb&w=150"
