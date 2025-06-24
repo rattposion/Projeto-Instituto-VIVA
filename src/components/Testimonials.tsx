@@ -115,7 +115,6 @@ const Testimonials = () => {
               <div className="p-4">
                 <h4 className="font-semibold text-gray-800">Semana da Inclusão reúne famílias e especialistas</h4>
                 <p className="text-sm text-gray-600 mt-2">Evento contou com palestras, oficinas e atividades para promover a inclusão de pessoas com TEA.</p>
-                <span className="text-xs text-gray-400">23/06/2024</span>
               </div>
             </div>
             <div className="relative bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
@@ -127,7 +126,6 @@ const Testimonials = () => {
               <div className="p-4">
                 <h4 className="font-semibold text-gray-800">Instituto VIVA recebe certificação de excelência</h4>
                 <p className="text-sm text-gray-600 mt-2">Reconhecimento nacional pela qualidade dos serviços prestados às famílias.</p>
-                <span className="text-xs text-gray-400">15/05/2024</span>
               </div>
             </div>
             <div className="relative bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
@@ -139,7 +137,6 @@ const Testimonials = () => {
               <div className="p-4">
                 <h4 className="font-semibold text-gray-800">Projeto Música e Vida transforma o cotidiano das crianças</h4>
                 <p className="text-sm text-gray-600 mt-2">Aulas de musicoterapia ampliam as possibilidades de expressão e desenvolvimento.</p>
-                <span className="text-xs text-gray-400">02/04/2024</span>
               </div>
             </div>
           </div>

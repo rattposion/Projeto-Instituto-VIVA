@@ -97,11 +97,6 @@ const Services = () => {
                     </li>
                   ))}
                 </ul>
-                
-                <button className="text-blue-600 font-semibold flex items-center space-x-2 hover:text-blue-700 transition-colors">
-                  <span>Saiba mais</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
               </div>
             );
           })}
