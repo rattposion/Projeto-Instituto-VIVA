@@ -96,7 +96,7 @@ const Testimonials = () => {
         </div>
 
         {/* Video Testimonials Section */}
-        <div className="bg-blue-50 rounded-2xl p-8 lg:p-12">
+        <div id="noticias" className="bg-blue-50 rounded-2xl p-8 lg:p-12">
           <div className="text-center mb-8">
             <h3 className="text-3xl font-bold text-gray-800 mb-4">Notícias</h3>
             <p className="text-gray-600">

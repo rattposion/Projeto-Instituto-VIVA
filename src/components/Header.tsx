@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X, Heart, Phone, Mail } from 'lucide-react';
+import { Menu, X, Heart, Phone, Mail, Instagram } from 'lucide-react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -19,6 +19,10 @@ const Header = () => {
                 <Mail className="w-4 h-4" />
                 <span>contato@institutoviva.org.br</span>
               </div>
+              <a href="https://instagram.com/SEU_INSTAGRAM" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-1 text-pink-600 hover:text-pink-700 transition-colors" aria-label="Instagram">
+                <Instagram className="w-4 h-4" />
+                <span className="hidden sm:inline">Instagram</span>
+              </a>
             </div>
             <div className="hidden md:block">
               <span>Transformando vidas com amor e inclusão</span>
@@ -56,6 +60,9 @@ const Header = () => {
             <a href="#depoimentos" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
               Depoimentos
             </a>
+            <a href="#noticias" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
+              Notícias
+            </a>
             <a href="#contato" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
               Contato
             </a>
@@ -90,6 +97,9 @@ const Header = () => {
               </a>
               <a href="#depoimentos" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
                 Depoimentos
+              </a>
+              <a href="#noticias" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
+                Notícias
               </a>
               <a href="#contato" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
                 Contato

@@ -7,6 +7,7 @@ import Testimonials from './components/Testimonials';
 import HowToHelp from './components/HowToHelp';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import WhatsappFloatButton from './components/WhatsappFloatButton';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <HowToHelp />
       <Contact />
       <Footer />
+      <WhatsappFloatButton />
     </div>
   );
 }

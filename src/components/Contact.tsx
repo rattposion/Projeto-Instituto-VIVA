@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, Phone, Mail, Clock, Send, MessageCircle } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Send, MessageCircle, Instagram } from 'lucide-react';
 import AnimacoesLudicas from './AnimacoesLudicas';
 
 const Contact = () => {
@@ -96,6 +96,10 @@ const Contact = () => {
                   <Mail className="w-5 h-5" />
                   <span>Enviar E-mail</span>
                 </button>
+                <a href="https://instagram.com/SEU_INSTAGRAM" target="_blank" rel="noopener noreferrer" className="w-full bg-pink-500 text-white py-3 px-4 rounded-xl hover:bg-pink-600 transition-colors flex items-center justify-center space-x-2 font-semibold">
+                  <Instagram className="w-5 h-5" />
+                  <span>Instagram</span>
+                </a>
               </div>
             </div>
 
