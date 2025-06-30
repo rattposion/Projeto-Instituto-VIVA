@@ -1,8 +1,19 @@
 import React from 'react';
 import { MapPin, Phone, Mail, Clock, Send, MessageCircle, Instagram } from 'lucide-react';
 import AnimacoesLudicas from './AnimacoesLudicas';
+import { fbqTrack } from '../utils/facebookPixel';
+import { sendCapiEvent } from '../utils/fbCapi';
 
 const Contact = () => {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const form = e.target as HTMLFormElement;
+    const email = (form.elements.namedItem('email') as HTMLInputElement)?.value;
+    fbqTrack('Contact', { method: 'form', email });
+    sendCapiEvent('Lead', { em: email }, { form: 'contato' });
+    // Aqui você pode adicionar o envio real do formulário
+  };
+
   return (
     <section id="contato" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -45,8 +56,8 @@ const Contact = () => {
                   <div>
                     <h4 className="font-semibold text-gray-800 mb-1">Telefones</h4>
                     <p className="text-gray-600">
-                      (61) 99999-9999 (WhatsApp)<br />
-                      (61) 3333-4444 (Fixo)
+                      (61) 99168-1369 (WhatsApp)<br />
+                      (61) 99168-1369 (Fixo)
                     </p>
                   </div>
                 </div>
@@ -58,8 +69,8 @@ const Contact = () => {
                   <div>
                     <h4 className="font-semibold text-gray-800 mb-1">E-mail</h4>
                     <p className="text-gray-600">
-                      contato@institutoviva.org.br<br />
-                      atendimento@institutoviva.org.br
+                      institutovivatea@gmail.com<br />
+                      institutovivatea@gmail.com
                     </p>
                   </div>
                 </div>
@@ -96,7 +107,7 @@ const Contact = () => {
                   <Mail className="w-5 h-5" />
                   <span>Enviar E-mail</span>
                 </button>
-                <a href="https://instagram.com/SEU_INSTAGRAM" target="_blank" rel="noopener noreferrer" className="w-full bg-pink-500 text-white py-3 px-4 rounded-xl hover:bg-pink-600 transition-colors flex items-center justify-center space-x-2 font-semibold">
+                <a href="https://instagram.com/institutovivatea" target="_blank" rel="noopener noreferrer" className="w-full bg-pink-500 text-white py-3 px-4 rounded-xl hover:bg-pink-600 transition-colors flex items-center justify-center space-x-2 font-semibold">
                   <Instagram className="w-5 h-5" />
                   <span>Instagram</span>
                 </a>
@@ -117,7 +128,7 @@ const Contact = () => {
           <div className="bg-gray-50 p-8 rounded-2xl">
             <h3 className="text-2xl font-bold text-gray-800 mb-6">Envie uma Mensagem</h3>
             
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Heart, Facebook, Instagram, Youtube, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
+import { fbqTrack } from '../utils/facebookPixel';
 
 const Footer = () => {
   return (
@@ -28,13 +29,14 @@ const Footer = () => {
               <a href="#" className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors">
                 <Facebook className="w-5 h-5" />
               </a>
-              <a href="#" className="w-10 h-10 bg-pink-600 rounded-full flex items-center justify-center hover:bg-pink-700 transition-colors">
+              <a href="#" className="w-10 h-10 bg-pink-600 rounded-full flex items-center justify-center hover:bg-pink-700 transition-colors"
+                onClick={() => fbqTrack('ClickExternal', { link: 'Instagram' })}
+              >
                 <Instagram className="w-5 h-5" />
               </a>
               <a href="#" className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center hover:bg-red-700 transition-colors">
                 <Youtube className="w-5 h-5" />
               </a>
-       
             </div>
           </div>
 
@@ -78,14 +80,13 @@ const Footer = () => {
               <div className="flex items-center space-x-3">
                 <Phone className="w-5 h-5 text-gray-400" />
                 <div className="text-sm text-gray-300">
-                  <p>(61) 99999-9999</p>
-                  <p>(61 3333-4444</p>
+                  <p>(61) 99168-1369</p>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="w-5 h-5 text-gray-400" />
                 <div className="text-sm text-gray-300">
-                  <p>contato@institutoviva.org.br</p>
+                  <p>institutovivatea@gmail.com</p>
                 </div>
               </div>
             </div>
@@ -137,6 +138,9 @@ const Footer = () => {
           </div>
         </div>
       </div>
+
+      {/* Exemplo de download rastreado */}
+      <a href="/relatorio.pdf" download onClick={() => fbqTrack('Download', { file: 'relatorio.pdf' })} className="text-blue-400 hover:text-white text-sm block mt-4">Baixar Relatório Anual</a>
     </footer>
   );
 };

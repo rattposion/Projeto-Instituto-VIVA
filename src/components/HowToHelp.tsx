@@ -1,6 +1,8 @@
 import React from 'react';
 import { Heart, Users, Briefcase, Gift, CreditCard, Calendar } from 'lucide-react';
 import AnimacoesLudicas from './AnimacoesLudicas';
+import { fbqTrack } from '../utils/facebookPixel';
+import { sendCapiEvent } from '../utils/fbCapi';
 
 const HowToHelp = () => {
   const helpOptions = [
@@ -79,7 +81,26 @@ const HowToHelp = () => {
                 
                 <div className="text-lg font-semibold text-blue-600 mb-6">{option.amount}</div>
                 
-                <button className={`w-full py-3 px-4 rounded-xl font-semibold transition-all duration-300 border-2 ${getColorClasses(option.color)}`}>
+                <button className={`w-full py-3 px-4 rounded-xl font-semibold transition-all duration-300 border-2 ${getColorClasses(option.color)}`}
+                  onClick={() => {
+                    if(option.title === 'Doação Única') {
+                      fbqTrack('Purchase', { value: 1, currency: 'BRL', type: 'pontual' });
+                      sendCapiEvent('Purchase', {}, { value: 1, currency: 'BRL', type: 'pontual' });
+                    }
+                    if(option.title === 'Doação Mensal') {
+                      fbqTrack('Subscribe', { value: 20, currency: 'BRL', type: 'mensal' });
+                      sendCapiEvent('Subscribe', {}, { value: 20, currency: 'BRL', type: 'mensal' });
+                    }
+                    if(option.title === 'Voluntariado') {
+                      fbqTrack('Lead', { type: 'voluntariado' });
+                      sendCapiEvent('Lead', {}, { type: 'voluntariado' });
+                    }
+                    if(option.title === 'Parcerias Empresariais') {
+                      fbqTrack('Lead', { type: 'parceria' });
+                      sendCapiEvent('Lead', {}, { type: 'parceria' });
+                    }
+                  }}
+                >
                   {option.action}
                 </button>
               </div>
@@ -168,7 +189,9 @@ const HowToHelp = () => {
               </div>
             </div>
             
-            <button className="mt-8 bg-green-500 text-white px-8 py-4 rounded-full hover:bg-green-600 transition-colors font-semibold flex items-center space-x-2">
+            <button className="mt-8 bg-green-500 text-white px-8 py-4 rounded-full hover:bg-green-600 transition-colors font-semibold flex items-center space-x-2"
+              onClick={() => fbqTrack('Lead', { type: 'voluntariado' })}
+            >
               <Users className="w-5 h-5" />
               <span>Quero Ser Voluntário</span>
             </button>
