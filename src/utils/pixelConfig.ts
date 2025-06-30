@@ -1,8 +1,12 @@
 import { API_URL } from './api';
 
 export async function getPixelConfig() {
-  const res = await fetch(`${API_URL}/api/pixels`);
+  const token = localStorage.getItem('token');
+  const res = await fetch(`${API_URL}/api/pixels`, {
+    headers: token ? { Authorization: `Bearer ${token}` } : {}
+  });
+  if (res.status === 401) return null;
   const data = await res.json();
-  // Supondo que retorna um array, pega o primeiro ativo
-  return data.find((item: any) => item.enabled);
+  if (!res.ok) throw new Error(data.error || 'Erro ao buscar pixels');
+  return Array.isArray(data) ? data.find((item: any) => item.enabled) : null;
 } 

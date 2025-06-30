@@ -22,6 +22,10 @@ import HeaderAdmin from './admin/components/Header';
 import ProtectedRoute from './admin/components/ProtectedRoute';
 import Events from './admin/pages/Events';
 import Pixels from './admin/pages/Pixels';
+import Conversions from './admin/pages/Conversions';
+import Diagnostics from './admin/pages/Diagnostics';
+import Integrations from './admin/pages/Integrations';
+import Settings from './admin/pages/Settings';
 
 /**
  * Estrutura de rotas do painel admin
@@ -83,6 +87,10 @@ function App() {
                   <Route path="dashboard" element={<Dashboard />} />
                   <Route path="pixels" element={<Pixels />} />
                   <Route path="events" element={<Events />} />
+                  <Route path="conversions" element={<Conversions />} />
+                  <Route path="diagnostics" element={<Diagnostics />} />
+                  <Route path="integrations" element={<Integrations />} />
+                  <Route path="settings" element={<Settings />} />
                   <Route path="testimonials" element={<TestimonialsAdmin />} />
                   <Route path="news" element={<News />} />
                   <Route path="siteinfo" element={<SiteInfo />} />
