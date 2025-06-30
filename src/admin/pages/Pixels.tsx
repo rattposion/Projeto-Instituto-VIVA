@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { authHeaders } from '../../utils/api';
 
 /**
  * Página de Pixels do Admin
@@ -15,10 +16,20 @@ const Pixels: React.FC = () => {
       setLoading(true);
       try {
         const res = await fetch('/api/pixels', {
-          headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+          headers: authHeaders()
         });
+        const contentType = res.headers.get('content-type');
+        if (!res.ok) {
+          let errorMsg = 'Erro desconhecido';
+          if (contentType && contentType.includes('application/json')) {
+            const data = await res.json();
+            errorMsg = data.error || errorMsg;
+          } else {
+            errorMsg = await res.text();
+          }
+          throw new Error(errorMsg);
+        }
         const data = await res.json();
-        if (!res.ok) throw new Error(data.error || 'Erro ao buscar pixels');
         setPixels(data);
       } catch (err: any) {
         setError(err.message);
@@ -35,7 +46,7 @@ const Pixels: React.FC = () => {
     try {
       const res = await fetch(`/api/pixels/${id}`, {
         method: 'DELETE',
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        headers: authHeaders()
       });
       if (!res.ok) throw new Error('Erro ao deletar');
       setPixels(pixels.filter(p => p.id !== id));

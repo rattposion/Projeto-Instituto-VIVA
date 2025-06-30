@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { API_URL } from '../../utils/api';
 // import { loginWithMeta } from '../../utils/api'; // Para OAuth futuro
 
 /**
@@ -19,7 +20,7 @@ const Login: React.FC = () => {
     setLoading(true);
     setError('');
     try {
-      const res = await fetch('/api/auth/login', {
+      const res = await fetch(`${API_URL}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
@@ -43,7 +44,7 @@ const Login: React.FC = () => {
         {error && <div className="mb-4 text-red-500">{error}</div>}
         <div className="mb-4">
           <label className="block mb-1 text-gray-700 dark:text-gray-200">E-mail</label>
-          <input type="email" value={email} onChange={e => setEmail(e.target.value)} required className="w-full px-3 py-2 border rounded focus:outline-none focus:ring" />
+          <input type="email" value={email} onChange={e => setEmail(e.target.value)} required className="w-full px-3 py-2 border rounded focus:outline-none focus:ring" placeholder="Digite seu e-mail" />
         </div>
         <div className="mb-6">
           <label className="block mb-1 text-gray-700 dark:text-gray-200">Senha</label>

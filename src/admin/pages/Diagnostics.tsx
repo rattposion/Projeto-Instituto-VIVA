@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { authHeaders } from '../../utils/api';
 
 /**
  * Página de Diagnóstico do Admin
@@ -16,18 +17,39 @@ const Diagnostics: React.FC = () => {
       setLoading(true);
       try {
         const resPixels = await fetch('/api/pixels', {
-          headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+          headers: authHeaders()
         });
+        const contentTypePixels = resPixels.headers.get('content-type');
+        if (!resPixels.ok) {
+          let errorMsg = 'Erro desconhecido';
+          if (contentTypePixels && contentTypePixels.includes('application/json')) {
+            const data = await resPixels.json();
+            errorMsg = data.error || errorMsg;
+          } else {
+            errorMsg = await resPixels.text();
+          }
+          throw new Error(errorMsg);
+        }
         const dataPixels = await resPixels.json();
-        if (!resPixels.ok) throw new Error(dataPixels.error || 'Erro ao buscar pixels');
         setPixels(dataPixels);
         // Buscar logs de erro do primeiro pixel (exemplo)
         if (dataPixels.length > 0) {
           const resLogs = await fetch(`/api/logs/pixel/${dataPixels[0].id}?level=ERROR`, {
-            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+            headers: authHeaders()
           });
+          const contentTypeLogs = resLogs.headers.get('content-type');
+          if (!resLogs.ok) {
+            let errorMsg = 'Erro desconhecido';
+            if (contentTypeLogs && contentTypeLogs.includes('application/json')) {
+              const data = await resLogs.json();
+              errorMsg = data.error || errorMsg;
+            } else {
+              errorMsg = await resLogs.text();
+            }
+            throw new Error(errorMsg);
+          }
           const dataLogs = await resLogs.json();
-          if (resLogs.ok) setLogs(dataLogs);
+          setLogs(dataLogs);
         }
       } catch (err: any) {
         setError(err.message);

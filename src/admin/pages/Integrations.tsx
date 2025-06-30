@@ -17,8 +17,18 @@ const Integrations: React.FC = () => {
       setLoading(true);
       try {
         const res = await fetch('/api/integrations/instructions'); // Sem header Authorization
+        const contentType = res.headers.get('content-type');
+        if (!res.ok) {
+          let errorMsg = 'Erro desconhecido';
+          if (contentType && contentType.includes('application/json')) {
+            const data = await res.json();
+            errorMsg = data.error || errorMsg;
+          } else {
+            errorMsg = await res.text();
+          }
+          throw new Error(errorMsg);
+        }
         const data = await res.json();
-        if (!res.ok) throw new Error(data.error || 'Erro ao buscar instruções');
         setInstructions(data);
       } catch (err: any) {
         setError(err.message);

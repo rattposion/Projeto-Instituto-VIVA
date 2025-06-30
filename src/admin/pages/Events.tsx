@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { authHeaders } from '../../utils/api';
 
 /**
  * Página de Eventos do Admin
@@ -17,11 +18,24 @@ const Events: React.FC = () => {
     const fetchPixels = async () => {
       try {
         const res = await fetch('/api/pixels', {
-          headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+          headers: authHeaders()
         });
+        const contentType = res.headers.get('content-type');
+        if (!res.ok) {
+          let errorMsg = 'Erro desconhecido';
+          if (contentType && contentType.includes('application/json')) {
+            const data = await res.json();
+            errorMsg = data.error || errorMsg;
+          } else {
+            errorMsg = await res.text();
+          }
+          throw new Error(errorMsg);
+        }
         const data = await res.json();
-        if (res.ok) setPixels(data);
-      } catch {}
+        setPixels(data);
+      } catch (err: any) {
+        setError(err.message);
+      }
     };
     fetchPixels();
   }, []);
@@ -35,10 +49,20 @@ const Events: React.FC = () => {
         let url = '/api/events';
         if (pixelId) url = `/api/events/pixel/${pixelId}`;
         const res = await fetch(url, {
-          headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+          headers: authHeaders()
         });
+        const contentType = res.headers.get('content-type');
+        if (!res.ok) {
+          let errorMsg = 'Erro desconhecido';
+          if (contentType && contentType.includes('application/json')) {
+            const data = await res.json();
+            errorMsg = data.error || errorMsg;
+          } else {
+            errorMsg = await res.text();
+          }
+          throw new Error(errorMsg);
+        }
         let data = await res.json();
-        if (!res.ok) throw new Error(data.error || 'Erro ao buscar eventos');
         // Filtro por tipo
         if (type) data = data.filter((e: any) => e.type === type);
         setEvents(data);

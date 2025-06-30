@@ -16,7 +16,7 @@ function getToken() {
   return localStorage.getItem('token');
 }
 
-function authHeaders() {
+export function authHeaders() {
   return {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer ' + getToken()
