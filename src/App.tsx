@@ -1,5 +1,27 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
+import { AuthProvider } from './contexts/AuthContext';
+import { ThemeProvider } from './contexts/ThemeContext';
+import ProtectedRoute from './components/auth/ProtectedRoute';
+import Layout from './components/layout/Layout';
+
+// Auth Pages
+import Login from './pages/auth/Login';
+import Register from './pages/auth/Register';
+import ForgotPassword from './pages/auth/ForgotPassword';
+
+// Admin Pages
+import Dashboard from './pages/Dashboard';
+import Pixels from './pages/Pixels';
+import Events from './pages/Events';
+import Conversions from './pages/Conversions';
+import Diagnostics from './pages/Diagnostics';
+import Integrations from './pages/Integrations';
+import Workspaces from './pages/Workspaces';
+import Settings from './pages/Settings';
+
+// Original Instituto VIVA components
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -9,103 +31,68 @@ import HowToHelp from './components/HowToHelp';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import WhatsappFloatButton from './components/WhatsappFloatButton';
-import CookieConsent, { Cookies } from 'react-cookie-consent';
-// Admin imports
-import Login from './admin/pages/Login';
-import Dashboard from './admin/pages/Dashboard';
-import TestimonialsAdmin from './admin/pages/Testimonials';
-import News from './admin/pages/News';
-import SiteInfo from './admin/pages/SiteInfo';
-import Pixel from './admin/pages/Pixel';
-import Sidebar from './admin/components/Sidebar';
-import HeaderAdmin from './admin/components/Header';
-import ProtectedRoute from './admin/components/ProtectedRoute';
-import Events from './admin/pages/Events';
-import Pixels from './admin/pages/Pixels';
-import Conversions from './admin/pages/Conversions';
-import Diagnostics from './admin/pages/Diagnostics';
-import Integrations from './admin/pages/Integrations';
-import Settings from './admin/pages/Settings';
 
-/**
- * Estrutura de rotas do painel admin
- */
-const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <div className="flex min-h-screen bg-gray-100 dark:bg-gray-900">
-    <Sidebar />
-    <div className="flex-1 flex flex-col">
-      <HeaderAdmin />
-      <main className="flex-1">{children}</main>
+// Instituto VIVA Homepage
+const InstitutoVivaHome: React.FC = () => {
+  return (
+    <div className="min-h-screen">
+      <Header />
+      <Hero />
+      <About />
+      <Services />
+      <Testimonials />
+      <HowToHelp />
+      <Contact />
+      <Footer />
+      <WhatsappFloatButton />
     </div>
-  </div>
-);
-
-const Site = () => (
-  <div className="min-h-screen">
-    <Header />
-    <Hero />
-    <About />
-    <Services />
-    <Testimonials />
-    <HowToHelp />
-    <Contact />
-    <Footer />
-    <WhatsappFloatButton />
-    <CookieConsent
-      location="bottom"
-      buttonText="Aceitar"
-      declineButtonText="Recusar"
-      enableDeclineButton
-      style={{ background: '#2B373B' }}
-      buttonStyle={{ color: '#fff', background: '#4eaf4e', fontSize: '13px' }}
-      declineButtonStyle={{ color: '#fff', background: '#d9534f', fontSize: '13px' }}
-      onAccept={() => { if(window.fbq) window.fbq('consent', 'grant'); }}
-      onDecline={() => { if(window.fbq) window.fbq('consent', 'revoke'); }}
-    >
-      Utilizamos cookies para melhorar sua experiência e para fins de marketing (Pixel Meta/Facebook). Você pode aceitar ou recusar.
-    </CookieConsent>
-  </div>
-);
+  );
+};
 
 function App() {
-  React.useEffect(() => {
-    if (Cookies.get('CookieConsent') === 'true' && window.fbq) {
-      window.fbq('consent', 'grant');
-    }
-  }, []);
   return (
-    <Router>
-      <Routes>
-        {/* Rotas do Admin */}
-        <Route path="/admin/login" element={<Login />} />
-        <Route
-          path="/admin/*"
-          element={
-            <ProtectedRoute>
-              <AdminLayout>
-                <Routes>
-                  <Route path="dashboard" element={<Dashboard />} />
-                  <Route path="pixels" element={<Pixels />} />
-                  <Route path="events" element={<Events />} />
-                  <Route path="conversions" element={<Conversions />} />
-                  <Route path="diagnostics" element={<Diagnostics />} />
-                  <Route path="integrations" element={<Integrations />} />
-                  <Route path="settings" element={<Settings />} />
-                  <Route path="testimonials" element={<TestimonialsAdmin />} />
-                  <Route path="news" element={<News />} />
-                  <Route path="siteinfo" element={<SiteInfo />} />
-                  <Route path="*" element={<Navigate to="/admin/dashboard" />} />
-                </Routes>
-              </AdminLayout>
-            </ProtectedRoute>
-          }
-        />
-        {/* Rotas do site principal */}
-        <Route path="/" element={<Site />} />
-        {/* Outras rotas públicas podem ser adicionadas aqui */}
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
-    </Router>
+    <ThemeProvider>
+      <AuthProvider>
+        <Router>
+          <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors">
+            <Routes>
+              {/* Instituto VIVA Homepage */}
+              <Route path="/" element={<InstitutoVivaHome />} />
+              
+              {/* Admin Auth Routes */}
+              <Route path="/admin/login" element={<Login />} />
+              <Route path="/admin/register" element={<Register />} />
+              <Route path="/admin/forgot-password" element={<ForgotPassword />} />
+              
+              {/* Admin Protected Routes */}
+              <Route path="/admin" element={<ProtectedRoute><Layout /></ProtectedRoute>}>
+                <Route index element={<Navigate to="/admin/dashboard" replace />} />
+                <Route path="dashboard" element={<Dashboard />} />
+                <Route path="pixels" element={<Pixels />} />
+                <Route path="pixels/:id" element={<div>Pixel Detail - Em desenvolvimento</div>} />
+                <Route path="events" element={<Events />} />
+                <Route path="conversions" element={<Conversions />} />
+                <Route path="diagnostics" element={<Diagnostics />} />
+                <Route path="integrations" element={<Integrations />} />
+                <Route path="workspaces" element={<Workspaces />} />
+                <Route path="settings" element={<Settings />} />
+              </Route>
+            </Routes>
+            
+            <Toaster 
+              position="top-right"
+              toastOptions={{
+                duration: 4000,
+                style: {
+                  background: '#363636',
+                  color: '#fff',
+                },
+              }}
+            />
+          </div>
+        </Router>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
 

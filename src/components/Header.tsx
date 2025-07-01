@@ -13,13 +13,13 @@ const Header = () => {
             <div className="flex items-center space-x-4">
               <div className="flex items-center space-x-1">
                 <Phone className="w-4 h-4" />
-                <span>(61) 99168-1369</span>
+                <span>(61) 99999-9999</span>
               </div>
               <div className="flex items-center space-x-1">
                 <Mail className="w-4 h-4" />
-                <span>institutovivatea@gmail.com</span>
+                <span>contato@institutoviva.org.br</span>
               </div>
-              <a href="https://instagram.com/institutovivatea" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-1 text-pink-600 hover:text-pink-700 transition-colors" aria-label="Instagram">
+              <a href="https://instagram.com/SEU_INSTAGRAM" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-1 text-pink-600 hover:text-pink-700 transition-colors" aria-label="Instagram">
                 <Instagram className="w-4 h-4" />
                 <span className="hidden sm:inline">Instagram</span>
               </a>
@@ -66,10 +66,7 @@ const Header = () => {
             <a href="#contato" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
               Contato
             </a>
-            <button 
-              className="bg-red-500 text-white px-6 py-2 rounded-full hover:bg-red-600 transition-colors flex items-center space-x-2 font-medium"
-              onClick={() => { if(window.fbq) window.fbq('track', 'QueroAjudar'); }}
-            >
+            <button className="bg-red-500 text-white px-6 py-2 rounded-full hover:bg-red-600 transition-colors flex items-center space-x-2 font-medium">
               <Heart className="w-4 h-4" />
               <span>Quero Ajudar</span>
             </button>
@@ -107,10 +104,7 @@ const Header = () => {
               <a href="#contato" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
                 Contato
               </a>
-              <button 
-                className="bg-red-500 text-white px-6 py-2 rounded-full hover:bg-red-600 transition-colors flex items-center justify-center space-x-2 font-medium"
-                onClick={() => { if(window.fbq) window.fbq('track', 'QueroAjudar'); }}
-              >
+              <button className="bg-red-500 text-white px-6 py-2 rounded-full hover:bg-red-600 transition-colors flex items-center justify-center space-x-2 font-medium">
                 <Heart className="w-4 h-4" />
                 <span>Quero Ajudar</span>
               </button>
